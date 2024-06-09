@@ -275,7 +275,7 @@ abstract class Filter implements FilterInterface
             ]);
         }
 
-        call_user_func([$this, $filter], $value);
+        $this->{$filter}($value);
     }
 
     /**
@@ -403,7 +403,7 @@ abstract class Filter implements FilterInterface
     protected function applyPreFilters(): void
     {
         if (! is_null($this->preFilters)) {
-            call_user_func_array($this->preFilters, [$this->getBuilder()]);
+            ($this->preFilters)($this->getBuilder());
         }
     }
 
